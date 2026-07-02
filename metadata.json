@@ -1,0 +1,6 @@
+{
+  "name": "Analizador de Estilo de Escritura",
+  "description": "Un sistema personal para analizar tus escritos anteriores, descifrar tus patrones de voz, muletillas y figuras retóricas, y evaluar la fidelidad de nuevos textos sugiriendo mejoras.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

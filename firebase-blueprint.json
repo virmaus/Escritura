@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "Writing": {
+      "title": "Writing Document",
+      "description": "An individual text piece written by the user for style analysis.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Title or context of the written text." },
+        "content": { "type": "string", "description": "The textual content written by the user." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the writing was added." },
+        "type": { "type": "string", "enum": ["previous", "new_draft"], "description": "Whether it's an older text or a new draft." }
+      },
+      "required": ["title", "content", "createdAt", "type"]
+    },
+    "StyleProfile": {
+      "title": "Style Profile Document",
+      "description": "The consolidated voice, fillers, and rhetorical patterns of the author.",
+      "type": "object",
+      "properties": {
+        "voicePatterns": { "type": "array", "description": "Key phrases or voice patterns identified." },
+        "fillers": { "type": "array", "description": "Repetitive or filler words to avoid." },
+        "rhetoricalFigures": { "type": "array", "description": "Favored rhetorical devices and examples." },
+        "tone": { "type": "string", "description": "Dominant writing tone." },
+        "sentenceStructure": { "type": "string", "description": "Syntactic pattern analysis." },
+        "vocabularyRichness": { "type": "number", "description": "Scale of 1-100 indicating lexical variety." },
+        "lastUpdated": { "type": "string", "format": "date-time", "description": "When the profile was generated." },
+        "totalWritingsAnalyzed": { "type": "number", "description": "Count of source writings analyzed." }
+      },
+      "required": ["voicePatterns", "fillers", "rhetoricalFigures", "tone", "sentenceStructure", "vocabularyRichness", "lastUpdated", "totalWritingsAnalyzed"]
+    },
+    "Evaluation": {
+      "title": "Text Evaluation Document",
+      "description": "Analysis of a new text piece compared to the Style Profile.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Title of the evaluated text." },
+        "content": { "type": "string", "description": "The textual content analyzed." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the evaluation was run." },
+        "fidelityScore": { "type": "number", "description": "Scale of 1-100 of how close it is to the profile." },
+        "feedback": { "type": "string", "description": "High-level feedback text from the tutor." },
+        "detectedFillers": { "type": "array", "description": "List of filler words caught." },
+        "suggestions": { "type": "array", "description": "List of style improvement recommendations." },
+        "detectedFigures": { "type": "array", "description": "Detected rhetorical devices in the new text." }
+      },
+      "required": ["title", "content", "createdAt", "fidelityScore", "feedback", "detectedFillers", "suggestions", "detectedFigures"]
+    }
+  },
+  "firestore": {
+    "writings": {
+      "schema": "Writing",
+      "description": "Collection of all written text fragments."
+    },
+    "profiles": {
+      "schema": "StyleProfile",
+      "description": "Stores style profile for the user."
+    },
+    "evaluations": {
+      "schema": "Evaluation",
+      "description": "Stores user drafts and evaluations history."
+    }
+  }
+}
